@@ -19,12 +19,12 @@ while True:
         # and limit the generated output to a maximum of 100 tokens.
         response = client.responses.create(
             model="gpt-5.6-luna",
-            instructions = "You are Alexa AI, a helpful assistant. Keep your responses concise and conversational.",
+            instructions = "You are Sarathi, a helpful assistant. Keep your responses concise and conversational.",
             input = question,
             max_output_tokens = 100,
             previous_response_id=previous_response_id
             )
-
+        
         print("AI:", response.output_text) #Print the output text of the response object.
         print(response.usage) #Print the usage of the response object.
         # print(response)

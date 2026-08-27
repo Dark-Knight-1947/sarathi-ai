@@ -1,6 +1,16 @@
-# Alexa AI
+# Sārathi
 
-A personal AI voice assistant project built with Python, the OpenAI API, and Amazon Alexa.
+A personal AI computer assistant built with Python and the OpenAI API.
+
+Sārathi is designed to understand natural-language commands and interact
+with my computer — opening applications, finding files, performing tasks,
+and eventually responding through voice.
+
+## Project Goal
+
+The goal of Sārathi is to build a personal AI assistant that can understand
+natural-language requests, interact with my computer through controlled Python
+tools, maintain useful memory, and eventually provide voice-based interaction.
 
 This project is also my learning journey through:
 
@@ -10,32 +20,37 @@ This project is also my learning journey through:
 - Git & GitHub
 - Environment variables
 - AI/LLM concepts
-- Voice assistants
-
+- Desktop automation
 ## Current Progress
 
-- [x] Create OpenAI API account
-- [x] Create and secure API key
 - [x] Set up Python project
-- [x] Install OpenAI Python library
-- [x] Make first OpenAI API request
-- [x] Accept user input from Python
-- [x] Understand the Response object
-- [x] Understand tokens and output limits
-- [x] Set up Git repository
-- [x] Create GitHub repository
-- [x] Push project to GitHub
-- [ ] Add conversation state
-- [ ] Connect Alexa
-- [ ] Add voice input
-- [ ] Add AI voice responses
-- [ ] Build the complete assistant
+- [x] Connect OpenAI API
+- [x] Make AI requests from Python
+- [x] Understand Responses API
+- [x] Understand tokens
+- [x] Implement conversation state
+- [x] Add system instructions
+- [x] Understand context and memory
+- [x] Set up Git & GitHub
+
+### Sārathi Development
+
+- [ ] Give Sārathi a command/action system
+- [ ] Open applications using Python
+- [ ] Open files and folders
+- [ ] Execute useful computer actions
+- [ ] Add AI tool/function calling
+- [ ] Add safety checks for computer actions
+- [ ] Build a local web interface
+- [ ] Add microphone/voice input
+- [ ] Add spoken responses
+- [ ] Run Sārathi without manually starting Python
+- [ ] Launch Sārathi automatically with the computer
 
 ## Technologies
 
 - Python
 - OpenAI API
-- Amazon Alexa
 - Git
 - GitHub
 
