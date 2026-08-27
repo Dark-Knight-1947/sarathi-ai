@@ -16,7 +16,7 @@ while True:
     try: 
         # Call the Responses API and store the returned Response object in a variable called response.
         # Use the "gpt-5.6-luna" model, pass the question variable as input,
-        # and limit the generated output to a maximum of 30 tokens.
+        # and limit the generated output to a maximum of 100 tokens.
         response = client.responses.create(
             model="gpt-5.6-luna",
             instructions = "You are Alexa AI, a helpful assistant. Keep your responses concise and conversational.",
@@ -26,7 +26,7 @@ while True:
             )
 
         print("AI:", response.output_text) #Print the output text of the response object.
-        # print(response.usage) #Print the usage of the response object.
+        print(response.usage) #Print the usage of the response object.
         # print(response)
 
         previous_response_id = response.id #Store the id of the response object in the previous_response_id variable.
