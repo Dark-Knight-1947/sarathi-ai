@@ -3,6 +3,7 @@
 A personal AI voice assistant project built with Python, the OpenAI API, and Amazon Alexa.
 
 This project is also my learning journey through:
+
 - Python
 - APIs
 - OpenAI API
@@ -24,6 +25,7 @@ This project is also my learning journey through:
 - [x] Set up Git repository
 - [x] Create GitHub repository
 - [x] Push project to GitHub
+- [ ] Add conversation state
 - [ ] Connect Alexa
 - [ ] Add voice input
 - [ ] Add AI voice responses
@@ -36,3 +38,12 @@ This project is also my learning journey through:
 - Amazon Alexa
 - Git
 - GitHub
+
+## Learning Notes
+
+- [APIs & API Keys](notes/01-apis-and-api-keys.md)
+- [Environment Variables](notes/02-environment-variables.md)
+- [OpenAI Python SDK](notes/03-openai-python-sdk.md)
+- [Responses API](notes/04-responses-api.md)
+- [Tokens](notes/05-tokens.md)
+- [Git & GitHub](notes/06-git-and-github.md)
