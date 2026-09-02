@@ -1,27 +1,58 @@
 from openai import OpenAI 
 from tools.applications import *
+from tools.file_system import *
 import json
+import inspect
 
 
 client = OpenAI() #Create an object from OpenAI class & store it in a variable called client
 
-tools = [
-    {
+type_mapping = {
+    str: "string",
+    int: "integer",
+    float: "number",
+    bool: "boolean"
+}
+
+def build_tool_schema(function):
+    signature = inspect.signature(function)
+
+    properties = {}
+    required = []
+
+    for parameter in signature.parameters.values():
+        name = parameter.name
+        annotation = parameter.annotation
+
+        json_type = type_mapping[annotation]
+
+        properties[name] = {
+            "type": json_type
+        }
+
+        if parameter.default is inspect.Parameter.empty:
+            required.append(name)
+
+    return {
         "type": "function",
-        "name": "open_application",
-        "description": "Open an application installed on the computer.",
+        "name": function.__name__,
+        "description": inspect.getdoc(function) or "",
         "parameters": {
             "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "The name of the application to open."
-                }
-            },
-            "required": ["name"],
+            "properties": properties,
+            "required": required,
             "additionalProperties": False
         }
     }
+
+tool_functions = {
+    "open_application": open_application,
+    "open_file_or_folder": open_file_or_folder
+}
+
+tools = [
+    build_tool_schema(function)
+    for function in tool_functions.values()
 ]
 
 previous_response_id = None
@@ -50,24 +81,23 @@ while True:
         
         for item in response.output:
             if item.type == "function_call":
-                if item.name == "open_application":
+                function = tool_functions[item.name]
+                arguments = json.loads(item.arguments)
 
-                    arguments = json.loads(item.arguments)
+                result = function(**arguments)
 
-                    result = open_application(arguments["name"])
+                tool_output = {
+                    "type": "function_call_output",
+                    "call_id": item.call_id,
+                    "output": result
+                }
 
-                    tool_output = {
-                        "type": "function_call_output",
-                        "call_id": item.call_id,
-                        "output": result
-                    }
-
-                    response = client.responses.create(
-                        model="gpt-5.6-luna",
-                        input=[tool_output],
-                        previous_response_id=response.id,
-                        max_output_tokens=100
-                    )
+                response = client.responses.create(
+                    model="gpt-5.6-luna",
+                    input=[tool_output],
+                    previous_response_id=response.id,
+                    max_output_tokens=100
+                )
 
         print("AI:", response.output_text) #Print the output text of the response object.
         # print(response.usage) #Print the usage of the response object.
